@@ -117,7 +117,7 @@ export default function Clubs({ products }) {
                </h2>
                <div className="display-flex">
                <button className="text-white p-3 "><Link href="/clubs=name">Name</Link></button>
-               <button className="text-white p-3"> <Link href="/clubs=status">Status</Link></button>
+               <button className="text-white p-3"> <b><Link href="/clubs=status">Status</Link></b></button>
                </div>
             </div>
          </div>

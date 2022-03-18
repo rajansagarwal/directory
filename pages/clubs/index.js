@@ -116,7 +116,7 @@ export default function Clubs({ products }) {
                  Discover Turner Fenton
                </h2>
                <div className="display-flex">
-               <button className="text-white p-3 "><Link href="/clubs=name">Name</Link></button>
+               <button className="text-white p-3 "><b><Link href="/clubs=name">Name</Link></b></button>
                <button className="text-white p-3"> <Link href="/clubs=status">Status</Link></button>
                </div>
             </div>
