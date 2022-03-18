@@ -2,23 +2,24 @@ import Airtable from 'airtable';
 import Head from 'next/head';
 import Link from 'next/link'
 import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import styles from '../../styles/Home.module.css'
 
 export async function getStaticProps() {
   const airtable = new Airtable({
     apiKey: process.env.API_KEY,
-    view: 'Grid view',
+    view: 'Name',
   });
 
   const records = await airtable
     .base(process.env.BASE_ID)('Directory')
     .select({
       fields: ['Name', 'Heads', 'Instagram', 'Status', 'Category', 'About', 'Colour', 'Image'],
-      view: 'Grid view',
+      view: 'Name',
     })
     .all();
 
   const products = records.map((sig) => {
+
     return {
       name: sig.get('Name'),
       type: sig.get('Name'),
@@ -40,36 +41,43 @@ export async function getStaticProps() {
   };
 }
 
+
 function Product({ name, type, about, colour, heads, image, status, category, link }) {
-  return (
-    <div class="max-w-sm bg-white rounded-lg border m-3 border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
-    <div class="p-5">
+  
+    return (
+    <div className="max-w-sm bg-white rounded-lg border m-3 border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+    <div className="p-5">
         <a href="#"
         style={{
           display: 'flex',
         }}
         >
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{name}</h5>
-            
-            <h5 class="mb-2 text-1xl mx-3 font-bold tracking-tight"
-              style={{
-                color: '#ffffff',
-              }}
-            >{status}</h5>
+            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{name}</h5>
+<div>
+
+ <button className="px-2 mx-2 py-0 -translate-y-0.5 my-2 opacity-0.8 hover:bg-yellow-600 bg-[{colour}]-500 text-white text-sm font-medium rounded-full"
+ style={{
+     backgroundColor: {colour},
+ }}
+ >
+    {status}
+ </button>
+ </div>
         </a>
 
-        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"><i>{category}</i></p>
-        <p class="mb-3 font-normal text-gray-700 dark:text-gray-300">{about}</p>
-        <a href="#" class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400"><i>{category}</i></p>
+        <p className="mb-3 font-normal text-gray-700 dark:text-gray-300">{about}</p>
+        <a href="#" className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
             Read more
-            <svg class="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+            <svg className="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
         </a>
     </div>
 </div>
   );
 }
 
-export default function Home({ products }) {
+export default function Clubs({ products }) {
+
   return (
     <div className={styles.container}>
       <Head>
@@ -79,13 +87,13 @@ export default function Home({ products }) {
       </Head>
 
       <main className={styles.main}>
-      <section class="pt-20 lg:pt-[120px] pb-5 lg:pb-5">
-   <div class="container">
-      <div class="flex flex-wrap justify-center -mx-4">
-         <div class="w-full px-4">
-            <div class="text-center mx-auto mb-[60px] lg:mb-20 max-w-[510px]">
+      <section className="pt-20 lg:pt-[120px] pb-5 lg:pb-5">
+   <div className="container">
+      <div className="flex flex-wrap justify-center -mx-4">
+         <div className="w-full px-4">
+            <div className="text-center mx-auto mb-[60px] lg:mb-20 max-w-[510px]">
                <h2
-                  class="
+                  className="
                   font-bold
                   text-3xl
                   sm:text-4xl
@@ -96,6 +104,10 @@ export default function Home({ products }) {
                   >
                  Discover Turner Fenton
                </h2>
+               <div className="display-flex">
+               <button className="text-white p-3 ">Name</button>
+               <button className="text-white p-3"> Status</button>
+               </div>
             </div>
          </div>
       </div>
