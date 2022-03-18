@@ -43,7 +43,18 @@ export async function getStaticProps() {
 
 
 function Product({ name, type, about, colour, heads, image, status, category, link }) {
-  
+    function Colours() {
+        if(status == 'Open') {
+            return '#08b445'
+        }
+        if (status == 'Soon') {
+            return '#c89809'
+        }
+        if (status == 'Closed') {
+            return 'red'
+        }
+    }
+
     return (
     <div className="max-w-sm bg-white rounded-lg border m-3 border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
     <div className="p-5">
@@ -55,7 +66,11 @@ function Product({ name, type, about, colour, heads, image, status, category, li
             <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{name}</h5>
 <div>
 
- <button className="px-2 mx-2 py-0 -translate-y-0.5 my-2 opacity-0.8 hover:bg-yellow-600 bg-green-500 text-white text-sm font-medium rounded-full" >
+ <button className="px-2 mx-2 py-0 -translate-y-0.5 my-2 opacity-0.8 hover:bg-yellow-600 text-white text-sm font-medium rounded-full" 
+    style={{
+        backgroundColor: Colours(),
+    }}
+ >
     {status}
  </button>
  </div>
